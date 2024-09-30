@@ -1,0 +1,68 @@
+---
+pia:
+  webclient:
+    openid:
+      sh-client:
+        connection-provider-name: sh-client
+        fixed-headers:
+          application: tmf641-soa
+        token-config:
+          use-mock: true
+          cache-name: sh-client-cache
+          cache-expiry-seconds: 10
+          token-url: https://localhost:1080/sh/auth2/token
+          basic-auth-username: myClientId
+          basic-auth-password: mySecret
+          form-data:
+            username: myUsername
+            password: myPassword
+            grant-type: password
+            scope: openid
+      apix-client:
+        connection-provider-name: apix-client
+        fixed-headers:
+          application: tmf641-soa
+        token-config:
+          use-mock: true
+          cache-name: apix-client-cache
+          cache-expiry-seconds: 10
+          token-url: https://localhost:1080/sh/auth2/token
+          basic-auth-username: myClientId
+          basic-auth-password: mySecret
+          form-data:
+            username: myUsername
+            password: myPassword
+            grant-type: password
+            scope: openid
+      dxl-client:
+        connection-provider-name: apix-client
+        fixed-headers:
+          application: tmf641-soa
+        token-config:
+          use-mock: true
+          cache-name: dxl-client-cache
+          cache-expiry-seconds: 10
+          token-url: https://localhost:1080/sh/auth2/token
+          basic-auth-username: myClientId
+          basic-auth-password: mySecret
+          form-data:
+            username: myUsername
+            password: myPassword
+            grant-type: password
+            scope: openid
+    basic:
+      basic-client:
+        connection-provider-name: basic-client
+        token-config:
+          username: user
+          password: pass
+
+  tmf-clients:
+    sh-tmf638:
+      base-url: http://sh.service-inventory-api
+      endpoint: /service
+    apix-tmf638:
+      base-url: http://apix.service-inventory-api
+      endpoint: /service
+      scopes:
+        get: APIX_GET_PRODUCT_ORDER_BY_ID

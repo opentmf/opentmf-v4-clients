@@ -1,0 +1,151 @@
+{
+  "@type": "ServiceOrder",
+  "category": "UC_GSIP",
+  "description": "Geographic DDI Number",
+  "externalId": "<<Digicom ProductOrderId>>",
+  "note": [
+    {
+      "text": "my service note"
+    }
+  ],
+  "relatedParty": [
+    {
+      "@referredType": "Customer",
+      "id": "1SF222321",
+      "href": "/tmf-api/customer/1SF222321",
+      "name": "Mercedes-Benz AG",
+      "role": "customer"
+    },
+    {
+      "@referredType": "Organization",
+      "id": "VFEG",
+      "href": "/tmf-api/organization/VFEG",
+      "name": "VFEG",
+      "role": "operator"
+    },
+    {
+      "@referredType": "Organization",
+      "id": "Tata",
+      "href": "/tmf-api/organization/Tata",
+      "name": "Tata",
+      "role": "supplier"
+    }
+  ],
+  "serviceOrderItem": [
+    {
+      "@type": "ServiceOrderItem",
+      "id": "1",
+      "action": "add",
+      "service": {
+        "@type": "Service",
+        "name": "GSIPGeoNumberServiceSpec",
+        "description": "GSIPGeoNumberServiceSpec",
+        "serviceSpecification": {
+          "@type": "ServiceSpecification",
+          "id": "gsipGeoNumberSS",
+          "href": "/tmf-api/serviceCatalogManagement/v4/serviceSpecification/gsipGeoNumberSS:(version=0)",
+          "name": "gsipGeoNumberSS",
+          "version": "0"
+        },
+        "place": [
+          {
+            "country": "England",
+            "countryCode": "GB",
+            "stateOrProvince": "LondonGreatArea",
+            "city": "Brighton",
+            "postcode": "BN1 4RU",
+            "streetName": "Trafalgae Place",
+            "streetNr": "3",
+            "geographicSubAddress": [
+              {
+                "@type": "GeographicSubAddress",
+                "buildingName": "Lanchester House"
+              }
+            ],
+            "role": "Service Place",
+            "@type": "GeographicAddress"
+          }
+        ],
+        "serviceCharacteristic": [
+          {
+            "id": "bulkQuantity",
+            "name": "bulkQuantity",
+            "value": 100,
+            "valueType": "number"
+          },
+          {
+            "id": "nomadicNumber",
+            "name": "nomadicNumber",
+            "value": false,
+            "valueType": "boolean"
+          },
+          {
+            "id": "numberPortingRequired",
+            "name": "numberPortingRequired",
+            "value": false,
+            "valueType": "boolean"
+          },
+          {
+            "id": "psdbPoId",
+            "name": "psdbPoId",
+            "valueType": "string",
+            "value": "PO1761"
+          },
+          {
+            "id": "vendorAccountId",
+            "name": "vendorAccountId",
+            "valueType": "string",
+            "value": "123456"
+          },
+          {
+            "id": "serviceProvider",
+            "name": "serviceProvider",
+            "value": "TATA",
+            "valueType": "string"
+          },
+          {
+            "id": "digicomOrderId",
+            "name": "digicomOrderId",
+            "value": "ORD000001",
+            "valueType": "string"
+          },
+          {
+            "id": "digicomOrderItemId",
+            "name": "digicomOrderItemId",
+            "value": "ORDITM000001",
+            "valueType": "string"
+          },
+          {
+            "id": "digicomProductInstanceId",
+            "name": "digicomProductInstanceId",
+            "value": "INST000001",
+            "valueType": "string"
+          }
+        ],
+        "relatedEntity": [
+          {
+            "@baseType": "Attachment",
+            "@schemaLocation": "/api/documentManagement/v4/schema/attachment.json",
+            "@type": "Attachment",
+            "revision": 0,
+            "id": "8ef218ae-9b4e-468e-9d1f-923e058ee16b",
+            "href": "/api/documentManagement/v4/attachment/8ef218ae-9b4e-468e-9d1f-923e058ee16b",
+            "attachmentType": "OTHER",
+            "description": "Other Document",
+            "mimeType": "application/pdf",
+            "name": "fileName",
+            "url": "bucketName/fileName.pdf",
+            "size": {
+              "amount": 1.0,
+              "units": "MB"
+            },
+            "createdDate": "2023-07-13T22:16:07.264Z",
+            "updatedDate": "2023-07-13T22:16:07.264Z",
+            "createdBy": "Anonymous",
+            "updatedBy": "Anonymous"
+          }
+        ]
+      }
+    }
+  ]
+}
