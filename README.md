@@ -23,6 +23,7 @@ The following features are provided out of the box:
 | TMF | Description        | Endpoint                   | Provider                                |
 |-----|:-------------------|:---------------------------|:----------------------------------------|
 | ALL |                    | /hub                       | HubClientProvider                       |
+| ALL | All TMF APIs       | Configured Endpoints       | GenericClientProvider                   |
 | 620 | Product Catalog    | /category                  | CategoryClientProvider                  |
 | 620 | Product Catalog    | /catalog                   | CatalogClientProvider                   |
 | 620 | Product Catalog    | /productSpecification      | ProductSpecificationClientProvider      |
@@ -265,12 +266,12 @@ Then in our service implementation, we can use any ProductOrderClient bean that 
 ```java
 @Service
 @RequiredArgsConstructor
-public void SomeServiceImpl implements SomeService {
+public class SomeServiceImpl implements SomeService {
   
   private final ProductOrderClient dnextProductOrderClient;
   private final ProductOrderClient otherProductOrderClient;
   
-  ...
+  // ...
 }
 ```
 Voila! Simple! And we have a dozen of methods to communicate with any TMF backend in a TMF-630 compliant fashion.
@@ -278,3 +279,5 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 ## Version History
 ### 1.0.0
 - Initial release
+### 1.0.1
+- Adds GenericClient

@@ -20,4 +20,9 @@ public class TmfClientsAutoConfiguration implements BeanPostProcessor {
   public HubClientProvider hubClientProvider(ApplicationContext ctx) {
     return new HubClientProvider(ctx);
   }
+
+  @Bean
+  public GenericClientProvider genericClientProvider(ApplicationContext ctx) {
+    return new GenericClientProvider(ctx);
+  }
 }
