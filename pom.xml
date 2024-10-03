@@ -20,22 +20,22 @@
 		- Follows TMF-630 recommendations.
 	</description>
 	<modules>
-		<module>tmf-client-common</module>
-		<module>tmf-620-client</module>
-		<module>tmf-622-client</module>
-		<module>tmf-633-client</module>
-		<module>tmf-634-client</module>
-		<module>tmf-638-client</module>
-		<module>tmf-639-client</module>
-		<module>tmf-641-client</module>
-		<module>tmf-652-client</module>
-		<module>tmf-637-client</module>
-    <module>tmf-669-client</module>
-    <module>tmf-632-client</module>
-    <module>tmf-629-client</module>
-    <module>tmf-666-client</module>
-    <module>tmf-663-client</module>
-		<module>tmf-648-client</module>
+		<module>tmf-hub-v4-client</module>
+		<module>tmf-620-v4-client</module>
+		<module>tmf-622-v4-client</module>
+		<module>tmf-629-v4-client</module>
+		<module>tmf-632-v4-client</module>
+		<module>tmf-633-v4-client</module>
+		<module>tmf-634-v4-client</module>
+		<module>tmf-637-v4-client</module>
+		<module>tmf-638-v4-client</module>
+		<module>tmf-639-v4-client</module>
+		<module>tmf-641-v4-client</module>
+		<module>tmf-648-v4-client</module>
+		<module>tmf-652-v4-client</module>
+		<module>tmf-663-v4-client</module>
+    <module>tmf-666-v4-client</module>
+		<module>tmf-669-v4-client</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -46,8 +46,8 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 
-		<pia-webclients.version>1.0.2</pia-webclients.version>
-		<tmf-common-model.version>4.1.0.1</tmf-common-model.version>
+		<pia-webclients.version>1.0.3</pia-webclients.version>
+		<tmf-clients-base.version>1.0.0</tmf-clients-base.version>
 		<json-path.version>2.9.0</json-path.version>
 		<json-patch.version>1.13</json-patch.version>
 		<mockserver.version>5.15.0</mockserver.version>
@@ -84,6 +84,13 @@
 	</dependencyManagement>
 
 	<dependencies>
+
+		<!-- Compile time dependencies -->
+		<dependency>
+			<groupId>com.pia.commons</groupId>
+			<artifactId>tmf-clients-base</artifactId>
+			<version>${tmf-clients-base.version}</version>
+		</dependency>
 
 		<!-- Optional dependencies -->
 		<dependency>

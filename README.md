@@ -1,24 +1,13 @@
 # tmf-v4-clients
 TMF-630 compliant clients for TMF v4 backends.
 
-## Foreword
-TMF-630 defines REST API Design Guidelines to be followed by any compliant TMF backend solution.
+This library is intended to provide clients for TMF v4 models.
 
-TMF v4 Clients is a TMF-630 compliant generic client implementation which uses Spring Webflux
-to communicate with a TMF compliant backend.
-
-The following features are provided out of the box:
-- Follows TMF-630 recommendations.
-- Uses the dynamically decomposable tmf-v4-models library for the hierarchical TMF model classes.
-- Supports dnext-tmf-v4-models extensions.
-- Ability to use any configured pia-web-client for dynamic access token retrieval.
-- Provides methods with and without access token parameters.
-- Ability to specify only the requested columns.
-- Ability to apply a jsonPath at server-side or client-side.
-- Ability to override the result object type.
-- Ability to retrieve a single page, all pages at once, or any desired page at a time.
+For the provided TmfClient methods and behaviour, please see [tmf-clients-base](https://github.com/pia-commons/tmf-clients-base) project and its [README.md](https://github.com/pia-commons/tmf-clients-base/blob/develop/README.md) file. 
 
 ## Exposed Client Providers
+
+In addition to the GenericClientProvider (which uses String as Create, Update and Result objects), the following providers are exposed as beans:
 
 | TMF | Description        | Endpoint                   | Provider                                |
 |-----|:-------------------|:---------------------------|:----------------------------------------|
@@ -68,18 +57,26 @@ Let's imagine a scenario, where a microservice needs to communicate with three d
 ```xml
 <project>
 
+  <dependencyManagement>
+    <dependency>
+      <groupId>com.pia.commons</groupId>
+      <artifactId>pia-commons-versions</artifactId>
+      <version>RELEASE</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+  </dependencyManagement>
+
   <!-- This automatically picks up tmf-622-model -->
   <dependency>
     <groupId>com.pia.commons</groupId>
-    <artifactId>tmf-622-client</artifactId>
-    <version>1.0.0</version>
+    <artifactId>tmf-622-v4-client</artifactId>
   </dependency>
 
   <!-- Also be able to use DNext extensions to the ProductOrderManagement -->
   <dependency>
     <groupId>com.pia.commons</groupId>
-    <artifactId>dnext-tmf-622-model</artifactId>
-    <version>4.0.0.0</version>
+    <artifactId>dnext-tmf-622-v4-model</artifactId>
   </dependency>
   
   <!-- Note: Using at least one PiA web client provider is mandatory. -->
@@ -87,7 +84,6 @@ Let's imagine a scenario, where a microservice needs to communicate with three d
   <dependency>
     <groupId>com.pia.commons</groupId>
     <artifactId>pia-openid-webclient-provider</artifactId>
-    <version>1.0.2</version>
   </dependency>
 
 </project>
@@ -174,6 +170,7 @@ For more detailed configuration options, please consult the documentation on the
 The PiA TMF v4 Clients Library requires that for each configured connection provider, 3 beans to be exposed prefixed by the connection id
 
 For example, for a configured connection named dnext, there should be the ffollowing three beans exposed by the caller application:
+
 - dnextWebClient
 - dnextTokenService
 - dnextClientConfiguration
@@ -281,3 +278,7 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 - Initial release
 ### 1.0.1
 - Adds GenericClient
+### 1.0.2
+- renames modules by appending v4
+- starts using the separate tmf-clients-base project
+- simplifies test dependencies
