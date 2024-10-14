@@ -3,7 +3,7 @@
   <parent>
     <groupId>com.pia.commons</groupId>
     <artifactId>tmf-v4-clients</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
   </parent>
 
   <artifactId>tmf-652-v4-client</artifactId>
