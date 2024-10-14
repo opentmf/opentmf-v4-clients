@@ -282,3 +282,6 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 - renames modules by appending v4
 - starts using the separate tmf-clients-base project
 - simplifies test dependencies
+### 1.0.3
+- updates tmf-clients-base to 1.0.1
+- updates pia-web-clients to 1.0.4
