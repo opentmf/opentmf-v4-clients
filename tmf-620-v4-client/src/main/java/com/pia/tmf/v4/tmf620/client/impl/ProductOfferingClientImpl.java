@@ -10,15 +10,17 @@ import com.pia.tmf.v4.tmf620.exception.ProductOfferingClientException;
 import com.pia.tmf.v4.tmf620.model.ProductOffering;
 import com.pia.tmf.v4.tmf620.model.ProductOfferingCreate;
 import com.pia.tmf.v4.tmf620.model.ProductOfferingUpdate;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Getter
 @RequiredArgsConstructor
 public class ProductOfferingClientImpl extends TmfClientBaseImpl
     <ProductOfferingCreate, ProductOfferingUpdate, ProductOffering>
     implements ProductOfferingClient {
 
-  private final TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -31,25 +33,5 @@ public class ProductOfferingClientImpl extends TmfClientBaseImpl
   @Override
   protected Class<? extends TmfClientException> getExceptionType() {
     return ProductOfferingClientException.class;
-  }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
   }
 }

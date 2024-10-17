@@ -79,11 +79,11 @@ Let's imagine a scenario, where a microservice needs to communicate with three d
     <artifactId>dnext-tmf-622-v4-model</artifactId>
   </dependency>
   
-  <!-- Note: Using at least one PiA web client provider is mandatory. -->
-  <!-- We will use openid provider in this example -->
+  <!-- Note: Using at least one PiA web client is mandatory. -->
+  <!-- We will use an openid web client in this example -->
   <dependency>
     <groupId>com.pia.commons</groupId>
-    <artifactId>pia-openid-webclient-provider</artifactId>
+    <artifactId>pia-openid-webclients-starter</artifactId>
   </dependency>
 
 </project>
@@ -96,7 +96,7 @@ pia:
   webclient:
     openid:
       dnext:
-        connection-provider-name: dnext-provider
+        connection-provider-name: dnext
         max-connections: 100
         request-timeout-millis: 50_000
         response-timeout-millis: 50_000
@@ -118,7 +118,7 @@ pia:
             scope: openid
             grant_type: password
       other:
-        connection-provider-name: other-provider
+        connection-provider-name: other
         max-connections: 100
         request-timeout-millis: 50_000
         response-timeout-millis: 50_000
@@ -167,67 +167,22 @@ pia:
 For more detailed configuration options, please consult the documentation on the pia-web-clients library README document.
 
 ### WebClient, TokenService and ClientProperties Bean Configurations
-The PiA TMF v4 Clients Library requires that for each configured connection provider, 3 beans to be exposed prefixed by the connection id
+The PiA TMF v4 Clients Library requires 3 beans to be exposed prefixed by the connection id for each configured web client. 
 
-For example, for a configured connection named dnext, there should be the ffollowing three beans exposed by the caller application:
+For example, for a configured web client named dnext, the following three beans must be exposed:
 
-- dnextWebClient
-- dnextTokenService
-- dnextClientConfiguration
+- `dnextWebClient`
+- `dnextTokenService`
+- `dnextClientConfiguration`
 
-Here is how to expose the required beans:
+Thanks to the `pia-openid-webclients-starter` autoconfiguration library, these beans are already exposed automatically.
 
-```java
-@Configuration
-@RequiredArgsConstructor
-@EnableConfigurationProperties(OpenidClients.class)
-public class OpenidAuthClientsConfig {
-
-  private final OpenidWebClientProvider openidWebClientProvider;
-  private final OpenidClients openidClients;
-
-  @Bean
-  public OpenidClientProperties dnextClientProperties() {
-    return openidClients.getOpenid().get("dnext");
-  }
-
-  @Bean
-  public WebClient dnextWebClient(
-      @Qualifier("dnextClientProperties") OpenidClientProperties dnextClientProperties) {
-    return openidWebClientProvider.buildWebClient(dnextClientProperties);
-  }
-
-  @Bean
-  public OpenidTokenService dnextTokenService(
-      @Qualifier("dnextClientProperties") OpenidClientProperties dnextClientProperties) {
-    return openidWebClientProvider.buildTokenService(dnextClientProperties);
-  }
-
-  @Bean
-  public OpenidClientProperties otherClientProperties() {
-    return openidClients.getOpenid().get("other");
-  }
-
-  @Bean
-  public WebClient otherWebClient(
-      @Qualifier("otherClientProperties") OpenidClientProperties otherClientProperties) {
-    return openidWebClientProvider.buildWebClient(otherClientProperties);
-  }
-
-  @Bean
-  public OpenidTokenService otherTokenService(
-      @Qualifier("otherClientProperties") OpenidClientProperties otherClientProperties) {
-    return openidWebClientProvider.buildTokenService(otherClientProperties);
-  }
-}
-```
-### TMF v4 Client Bean Configuration
+### Expose TmfClient Beans
 TMF Client library provides a ClientProvider bean per endpoint to construct the implementation dynamically using the preferred web client.
 
-In our microservice, we need to expose a customized ObjectMapper and the requested TMF client implementations as beans in a configuration class like this:
+In our microservice, we need to expose a customized ObjectMapper and the requested TMF client implementations as beans in a configuration class similar to the following:
 
 ```java
-
 @Configuration
 @RequiredArgsConstructor
 public class TmfClientConfig {
@@ -245,15 +200,13 @@ public class TmfClientConfig {
   @Bean
   public ProductOrderClient dnextProductOrderClient(ProductOrderClientProvider productOrderClientProvider) {
     return productOrderClientProvider.getTmfClient(
-        tmfClientConfigurations.getTmfClients().get("dnext-tmf622"),
-        "dnext");
+        tmfClientConfigurations.getTmfClients().get("dnext-tmf622"), "dnext");
   }
 
   @Bean
   public ProductOrderClient otherProductOrderClient(ProductOrderClientProvider productOrderClientProvider) {
     return productOrderClientProvider.getTmfClient(
-        tmfClientConfigurations.getTmfClients().get("other-tmf622"),
-        "other");
+        tmfClientConfigurations.getTmfClients().get("other-tmf622"), "other");
   }
 }
 ```
@@ -271,7 +224,7 @@ public class SomeServiceImpl implements SomeService {
   // ...
 }
 ```
-Voila! Simple! And we have a dozen of methods to communicate with any TMF backend in a TMF-630 compliant fashion.
+Voila! Simple! And we have a dozen of methods to communicate with any TMF backend with a TMF-630 compliant fashion.
 
 ## Version History
 ### 1.0.0
@@ -285,3 +238,6 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 ### 1.0.3
 - updates tmf-clients-base to 1.0.1
 - updates pia-web-clients to 1.0.4
+### 1.0.4
+- updates tmf-clients-base to 1.0.2
+- updates pia-web-clients to 1.0.5

@@ -10,15 +10,17 @@ import com.pia.tmf.v4.tmf620.exception.CatalogClientException;
 import com.pia.tmf.v4.tmf620.model.Catalog;
 import com.pia.tmf.v4.tmf620.model.CatalogCreate;
 import com.pia.tmf.v4.tmf620.model.CatalogUpdate;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Getter
 @RequiredArgsConstructor
 public class CatalogClientImpl extends TmfClientBaseImpl
     <CatalogCreate, CatalogUpdate, Catalog>
     implements CatalogClient {
 
-  private final TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -31,25 +33,5 @@ public class CatalogClientImpl extends TmfClientBaseImpl
   @Override
   protected Class<? extends TmfClientException> getExceptionType() {
     return CatalogClientException.class;
-  }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
   }
 }
