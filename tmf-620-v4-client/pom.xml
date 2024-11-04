@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.pia.commons</groupId>
 		<artifactId>tmf-v4-clients</artifactId>
-		<version>1.0.5</version>
+		<version>1.0.6-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>tmf-620-v4-client</artifactId>
