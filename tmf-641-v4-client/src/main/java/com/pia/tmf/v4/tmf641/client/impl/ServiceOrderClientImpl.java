@@ -10,17 +10,21 @@ import com.pia.tmf.v4.tmf641.exception.ServiceOrderClientException;
 import com.pia.tmf.v4.tmf641.model.ServiceOrder;
 import com.pia.tmf.v4.tmf641.model.ServiceOrderCreate;
 import com.pia.tmf.v4.tmf641.model.ServiceOrderUpdate;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.reactive.function.client.WebClient;
 
+/**
+ * @author Gokhan Demir
+ */
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
-@Slf4j
 public class ServiceOrderClientImpl extends TmfClientBaseImpl
     <ServiceOrderCreate, ServiceOrderUpdate, ServiceOrder>
     implements ServiceOrderClient {
 
-  private final TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -33,25 +37,5 @@ public class ServiceOrderClientImpl extends TmfClientBaseImpl
   @Override
   protected Class<? extends TmfClientException> getExceptionType() {
     return ServiceOrderClientException.class;
-  }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
   }
 }

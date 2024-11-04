@@ -10,11 +10,12 @@ import com.pia.tmf.v4.tmf620.exception.ProductOfferingClientException;
 import com.pia.tmf.v4.tmf620.model.ProductOffering;
 import com.pia.tmf.v4.tmf620.model.ProductOfferingCreate;
 import com.pia.tmf.v4.tmf620.model.ProductOfferingUpdate;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@Getter
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
 public class ProductOfferingClientImpl extends TmfClientBaseImpl
     <ProductOfferingCreate, ProductOfferingUpdate, ProductOffering>

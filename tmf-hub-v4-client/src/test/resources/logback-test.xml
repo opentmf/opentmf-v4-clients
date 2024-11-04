@@ -6,6 +6,7 @@
   </appender>
 
   <logger name="com.pia" level="TRACE" />
+  <logger name="org.springframework" level="DEBUG" />
 
   <root level="INFO">
     <appender-ref ref="STDOUT" />

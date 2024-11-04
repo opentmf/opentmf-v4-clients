@@ -3,7 +3,6 @@ package com.pia.tmf.v4.tmf639.client.impl;
 import com.pia.client.common.model.BaseClientProperties;
 import com.pia.client.common.service.api.TokenService;
 import com.pia.tmf.common.client.impl.TmfClientBaseImpl;
-import com.pia.tmf.common.config.TmfClientConfigurations;
 import com.pia.tmf.common.config.TmfClientConfigurations.TmfClientConfig;
 import com.pia.tmf.common.exception.TmfClientException;
 import com.pia.tmf.v4.resource.model.Resource;
@@ -11,15 +10,18 @@ import com.pia.tmf.v4.resource.model.ResourceCreate;
 import com.pia.tmf.v4.resource.model.ResourceUpdate;
 import com.pia.tmf.v4.tmf639.client.api.ResourceClient;
 import com.pia.tmf.v4.tmf639.exception.ResourceClientException;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
 public class ResourceClientImpl extends TmfClientBaseImpl
     <ResourceCreate, ResourceUpdate, Resource>
     implements ResourceClient {
 
-  private final TmfClientConfigurations.TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -32,25 +34,5 @@ public class ResourceClientImpl extends TmfClientBaseImpl
   @Override
   protected Class<? extends TmfClientException> getExceptionType() {
     return ResourceClientException.class;
-  }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
   }
 }

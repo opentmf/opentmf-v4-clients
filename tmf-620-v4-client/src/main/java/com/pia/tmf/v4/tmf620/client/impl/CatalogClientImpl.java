@@ -10,11 +10,12 @@ import com.pia.tmf.v4.tmf620.exception.CatalogClientException;
 import com.pia.tmf.v4.tmf620.model.Catalog;
 import com.pia.tmf.v4.tmf620.model.CatalogCreate;
 import com.pia.tmf.v4.tmf620.model.CatalogUpdate;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@Getter
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
 public class CatalogClientImpl extends TmfClientBaseImpl
     <CatalogCreate, CatalogUpdate, Catalog>

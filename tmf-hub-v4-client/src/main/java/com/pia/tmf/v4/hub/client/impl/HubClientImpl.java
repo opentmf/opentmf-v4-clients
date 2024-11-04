@@ -16,6 +16,8 @@ import com.pia.tmf.v4.hub.client.api.HubClient;
 import com.pia.tmf.v4.hub.exception.HubClientException;
 import com.pia.tmf.v4.hub.model.ExtendedEventSubscription;
 import java.net.URI;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.MultiValueMap;
@@ -27,13 +29,14 @@ import reactor.core.publisher.Mono;
 /**
  * @author Gokhan Demir
  */
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
 public final class HubClientImpl
     extends TmfClientBaseImpl
     <EventSubscriptionInput, EventSubscriptionInput, ExtendedEventSubscription>
     implements HubClient {
 
-  private final TmfClientConfig tmfClientConfig;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -49,26 +52,6 @@ public final class HubClientImpl
   }
 
   @Override
-  protected TmfClientConfig getClientConfig() {
-    return tmfClientConfig;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return clientProperties;
-  }
-
-  @Override
   public Mono<ExtendedEventSubscription> registerListener(EventSubscriptionInput input) {
     return getToken(Scope.POST).flatMap(token -> registerListener(token, input));
   }
@@ -77,9 +60,9 @@ public final class HubClientImpl
   public Mono<ExtendedEventSubscription> registerListener(
       String token, EventSubscriptionInput input) {
     var url =
-        tmfClientConfig.getBaseUrl()
-            + (tmfClientConfig.getContextPath() == null ? "" : tmfClientConfig.getContextPath())
-            + tmfClientConfig.getEndpoint();
+        clientConfig.getBaseUrl()
+            + (clientConfig.getContextPath() == null ? "" : clientConfig.getContextPath())
+            + clientConfig.getEndpoint();
     return postWithToken(token, input, getType())
         .doOnNext(
             extendedEventSubscription -> extendedEventSubscription.setHubUri(URI.create(url)));

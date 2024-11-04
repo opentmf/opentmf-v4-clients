@@ -10,18 +10,21 @@ import com.pia.tmf.v4.tmf632.exception.OrganizationClientException;
 import com.pia.tmf.v4.tmf632.model.Organization;
 import com.pia.tmf.v4.tmf632.model.OrganizationCreate;
 import com.pia.tmf.v4.tmf632.model.OrganizationUpdate;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
  * @author Gokhan Demir
  */
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
 public class OrganizationClientImpl extends TmfClientBaseImpl
     <OrganizationCreate, OrganizationUpdate, Organization>
     implements OrganizationClient {
 
-  private final TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -34,25 +37,5 @@ public class OrganizationClientImpl extends TmfClientBaseImpl
   @Override
   protected Class<? extends TmfClientException> getExceptionType() {
     return OrganizationClientException.class;
-  }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
   }
 }

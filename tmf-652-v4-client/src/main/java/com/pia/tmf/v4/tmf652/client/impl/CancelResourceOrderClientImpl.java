@@ -10,16 +10,22 @@ import com.pia.tmf.v4.tmf652.client.api.CancelResourceOrderClient;
 import com.pia.tmf.v4.tmf652.exception.CancelResourceOrderClientException;
 import com.pia.tmf.v4.tmf652.model.CancelResourceOrder;
 import com.pia.tmf.v4.tmf652.model.CancelResourceOrderCreate;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+/**
+ * @author Gokhan Demir
+ */
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
 public class CancelResourceOrderClientImpl extends TmfClientBaseImpl
     <CancelResourceOrderCreate, CancelResourceOrderCreate, CancelResourceOrder>
     implements CancelResourceOrderClient {
 
-  private final TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -33,27 +39,6 @@ public class CancelResourceOrderClientImpl extends TmfClientBaseImpl
   protected Class<? extends TmfClientException> getExceptionType() {
     return CancelResourceOrderClientException.class;
   }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
-  }
-
   @Override
   public Mono<CancelResourceOrder> patch(String id, CancelResourceOrderCreate obj) {
     throw new UnsupportedOperationException();

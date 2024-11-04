@@ -10,15 +10,18 @@ import com.pia.tmf.v4.tmf620.exception.ProductOfferingPriceClientException;
 import com.pia.tmf.v4.tmf620.model.ProductOfferingPrice;
 import com.pia.tmf.v4.tmf620.model.ProductOfferingPriceCreate;
 import com.pia.tmf.v4.tmf620.model.ProductOfferingPriceUpdate;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
 public class ProductOfferingPriceClientImpl extends TmfClientBaseImpl
     <ProductOfferingPriceCreate, ProductOfferingPriceUpdate, ProductOfferingPrice>
     implements ProductOfferingPriceClient {
 
-  private final TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -31,25 +34,5 @@ public class ProductOfferingPriceClientImpl extends TmfClientBaseImpl
   @Override
   protected Class<? extends TmfClientException> getExceptionType() {
     return ProductOfferingPriceClientException.class;
-  }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
   }
 }

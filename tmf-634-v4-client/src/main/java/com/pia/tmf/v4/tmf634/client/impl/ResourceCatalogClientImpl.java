@@ -10,15 +10,21 @@ import com.pia.tmf.v4.tmf634.exception.ResourceCatalogClientException;
 import com.pia.tmf.v4.tmf634.model.ResourceCatalog;
 import com.pia.tmf.v4.tmf634.model.ResourceCatalogCreate;
 import com.pia.tmf.v4.tmf634.model.ResourceCatalogUpdate;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
+/**
+ * @author Gokhan Demir
+ */
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
 public class ResourceCatalogClientImpl extends TmfClientBaseImpl
     <ResourceCatalogCreate, ResourceCatalogUpdate, ResourceCatalog>
     implements ResourceCatalogClient {
 
-  private final TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -31,25 +37,5 @@ public class ResourceCatalogClientImpl extends TmfClientBaseImpl
   @Override
   protected Class<? extends TmfClientException> getExceptionType() {
     return ResourceCatalogClientException.class;
-  }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
   }
 }

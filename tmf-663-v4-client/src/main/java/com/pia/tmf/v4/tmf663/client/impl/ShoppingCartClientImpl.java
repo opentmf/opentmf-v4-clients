@@ -10,18 +10,21 @@ import com.pia.tmf.v4.tmf663.exception.ShoppingCartClientException;
 import com.pia.tmf.v4.tmf663.model.ShoppingCart;
 import com.pia.tmf.v4.tmf663.model.ShoppingCartCreate;
 import com.pia.tmf.v4.tmf663.model.ShoppingCartUpdate;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
  * @author Gokhan Demir
  */
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
 public class ShoppingCartClientImpl extends TmfClientBaseImpl
     <ShoppingCartCreate, ShoppingCartUpdate, ShoppingCart>
     implements ShoppingCartClient {
 
-  private final TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -34,25 +37,5 @@ public class ShoppingCartClientImpl extends TmfClientBaseImpl
   @Override
   protected Class<? extends TmfClientException> getExceptionType() {
     return ShoppingCartClientException.class;
-  }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
   }
 }

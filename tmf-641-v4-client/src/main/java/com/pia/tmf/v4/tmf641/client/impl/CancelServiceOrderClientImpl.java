@@ -10,18 +10,22 @@ import com.pia.tmf.v4.tmf641.client.api.CancelServiceOrderClient;
 import com.pia.tmf.v4.tmf641.exception.CancelServiceOrderClientException;
 import com.pia.tmf.v4.tmf641.model.CancelServiceOrder;
 import com.pia.tmf.v4.tmf641.model.CancelServiceOrderCreate;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+/**
+ * @author Gokhan Demir
+ */
+@Getter(value = AccessLevel.PROTECTED, onMethod = @__({@Override}))
 @RequiredArgsConstructor
-@Slf4j
 public class CancelServiceOrderClientImpl extends TmfClientBaseImpl
     <CancelServiceOrderCreate, CancelServiceOrderCreate, CancelServiceOrder>
     implements CancelServiceOrderClient {
 
-  private final TmfClientConfig config;
+  private final TmfClientConfig clientConfig;
   private final WebClient webClient;
   private final TokenService tokenService;
   private final BaseClientProperties clientProperties;
@@ -34,26 +38,6 @@ public class CancelServiceOrderClientImpl extends TmfClientBaseImpl
   @Override
   protected Class<? extends TmfClientException> getExceptionType() {
     return CancelServiceOrderClientException.class;
-  }
-
-  @Override
-  protected TmfClientConfig getClientConfig() {
-    return this.config;
-  }
-
-  @Override
-  protected WebClient getWebClient() {
-    return this.webClient;
-  }
-
-  @Override
-  protected TokenService getTokenService() {
-    return this.tokenService;
-  }
-
-  @Override
-  protected BaseClientProperties getClientProperties() {
-    return this.clientProperties;
   }
 
   @Override

@@ -1,5 +1,5 @@
 # tmf-v4-clients
-TMF-630 compliant clients for TMF v4 backends.
+TMF-630 compliant client providers for TMF v4 backends.
 
 This library is intended to provide clients for TMF v4 models.
 
@@ -241,3 +241,7 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 ### 1.0.4
 - updates tmf-clients-base to 1.0.2
 - updates pia-web-clients to 1.0.5
+### 1.0.5
+- updates tmf-clients-base to 1.0.3
+- updates pia-web-clients to 1.0.6
+- simplifies client implementations by introducing @Getter
