@@ -9,7 +9,7 @@
   <artifactId>tmf-652-v4-client</artifactId>
 
   <properties>
-    <tmf-652-v4-model.version>4.0.0.2</tmf-652-v4-model.version>
+    <tmf-652-v4-model.version>4.0.0.3</tmf-652-v4-model.version>
   </properties>
 
   <dependencies>

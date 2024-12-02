@@ -10,7 +10,7 @@
 	<artifactId>tmf-620-v4-client</artifactId>
 
 	<properties>
-		<tmf-620-v4-model.version>4.1.0.2</tmf-620-v4-model.version>
+		<tmf-620-v4-model.version>4.1.0.3</tmf-620-v4-model.version>
 	</properties>
 
 	<dependencies>

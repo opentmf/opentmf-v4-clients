@@ -10,7 +10,7 @@
   <artifactId>tmf-669-v4-client</artifactId>
 
   <properties>
-    <tmf-669-v4-model.version>4.0.0.2</tmf-669-v4-model.version>
+    <tmf-669-v4-model.version>4.0.0.3</tmf-669-v4-model.version>
   </properties>
 
   <dependencies>

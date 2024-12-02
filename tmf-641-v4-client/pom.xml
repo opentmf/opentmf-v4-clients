@@ -9,8 +9,8 @@
     <artifactId>tmf-641-v4-client</artifactId>
 
     <properties>
-        <tmf-641-v4-model.version>4.1.0.2</tmf-641-v4-model.version>
-        <dnext-tmf-641-v4-model.version>4.1.0.2</dnext-tmf-641-v4-model.version>
+        <tmf-641-v4-model.version>4.1.0.3</tmf-641-v4-model.version>
+        <dnext-tmf-641-v4-model.version>4.1.0.3</dnext-tmf-641-v4-model.version>
     </properties>
 
     <dependencies>

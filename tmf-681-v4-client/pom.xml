@@ -7,29 +7,21 @@
     <version>1.0.6-SNAPSHOT</version>
   </parent>
 
-  <artifactId>tmf-634-v4-client</artifactId>
+  <artifactId>tmf-681-v4-client</artifactId>
 
   <properties>
-    <tmf-634-v4-model.version>4.1.0.3</tmf-634-v4-model.version>
+    <tmf-681-v4-model.version>4.0.0.3</tmf-681-v4-model.version>
   </properties>
 
   <dependencies>
 
+    <!-- TMF Model Library dependencies -->
     <dependency>
       <groupId>com.pia.commons</groupId>
-      <artifactId>tmf-634-v4-model</artifactId>
-      <version>${tmf-634-v4-model.version}</version>
+      <artifactId>tmf-681-v4-model</artifactId>
+      <version>${tmf-681-v4-model.version}</version>
     </dependency>
 
-    <!-- Test Dependencies -->
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>tmf-hub-v4-client</artifactId>
-      <version>${project.version}</version>
-      <classifier>tests</classifier>
-      <type>test-jar</type>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
 </project>
