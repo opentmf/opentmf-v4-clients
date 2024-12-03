@@ -10,7 +10,7 @@
 
     <properties>
         <tmf-641-v4-model.version>4.1.0.3</tmf-641-v4-model.version>
-        <dnext-tmf-641-v4-model.version>4.1.0.3</dnext-tmf-641-v4-model.version>
+        <dnext-tmf-641-v4-model.version>4.1.0.4</dnext-tmf-641-v4-model.version>
     </properties>
 
     <dependencies>

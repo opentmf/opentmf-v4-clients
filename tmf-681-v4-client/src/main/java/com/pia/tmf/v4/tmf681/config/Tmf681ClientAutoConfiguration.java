@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Bean;
 public class Tmf681ClientAutoConfiguration {
 
   @Bean
-  public CommunicationsMessageClientProvider partyRoleClientProvider(ApplicationContext ctx) {
+  public CommunicationsMessageClientProvider communicationsMessageClientProvider(
+      ApplicationContext ctx) {
     return new CommunicationsMessageClientProvider(ctx);
   }
 }

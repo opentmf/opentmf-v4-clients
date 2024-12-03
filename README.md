@@ -48,6 +48,7 @@ In addition to the GenericClientProvider (which uses String as Create, Update an
 | 666 | Account            | /billFormat                | BillFormatClientProvider                |
 | 666 | Account            | /billPresentationMedia     | BillPresentationMediaClientProvider     |
 | 669 | Party Role         | /partyRole                 | PartyRoleClientProvider                 |
+| 681 | Communication Mgmt | /communicationMessage      | CommunicationMessageClientProvider      |
 
 
 ## Usage

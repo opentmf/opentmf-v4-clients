@@ -11,7 +11,7 @@
 
 	<properties>
 		<tmf-622-v4-model.version>4.0.0.3</tmf-622-v4-model.version>
-		<dnext-tmf-622-v4-model.version>4.0.0.3</dnext-tmf-622-v4-model.version>
+		<dnext-tmf-622-v4-model.version>4.0.0.4</dnext-tmf-622-v4-model.version>
 	</properties>
 
 	<dependencies>
