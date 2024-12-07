@@ -47,7 +47,7 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 
-		<pia-webclients.version>1.0.6</pia-webclients.version>
+		<pia-webclients.version>1.0.7</pia-webclients.version>
 		<tmf-clients-base.version>1.0.3</tmf-clients-base.version>
 		<json-path.version>2.9.0</json-path.version>
 		<json-patch.version>1.13</json-patch.version>

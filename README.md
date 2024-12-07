@@ -249,3 +249,5 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 ### 1.0.6
 - updates pia-tmf-v4-models to v3.
 - adds TMF-681 CommunicationsMessageClient 
+### 1.0.7
+-  updates pia-web-clients to 1.0.7
