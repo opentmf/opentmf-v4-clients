@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 public class Tmf648ClientAutoConfiguration {
 
   @Bean
-  public QuoteClientProvider productOrderClientProvider(ApplicationContext ctx) {
+  public QuoteClientProvider quoteClientProvider(ApplicationContext ctx) {
     return new QuoteClientProvider(ctx);
   }
 }

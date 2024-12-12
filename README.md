@@ -251,3 +251,5 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 - adds TMF-681 CommunicationsMessageClient 
 ### 1.0.7
 -  updates pia-web-clients to 1.0.7
+### 1.0.8
+-  fixes the bean name for quoteClientProvider
