@@ -253,3 +253,6 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 -  updates pia-web-clients to 1.0.7
 ### 1.0.8
 -  fixes the bean name for quoteClientProvider
+### 1.0.9
+- Updates to pia-web-clients 1.0.8, for fewer dependencies for the reactive WebClient.
+- Updates Spring Boot to 3.4.1
