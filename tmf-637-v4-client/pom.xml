@@ -20,17 +20,6 @@
       <artifactId>tmf-637-v4-model</artifactId>
       <version>${tmf-637-v4-model.version}</version>
     </dependency>
-
-    <!-- Test Dependencies -->
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>tmf-hub-v4-client</artifactId>
-      <version>${project.version}</version>
-      <classifier>tests</classifier>
-      <type>test-jar</type>
-      <scope>test</scope>
-    </dependency>
-
   </dependencies>
 
 </project>

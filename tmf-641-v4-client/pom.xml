@@ -1,42 +1,25 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.pia.commons</groupId>
-        <artifactId>tmf-v4-clients</artifactId>
-        <version>1.1.1-SNAPSHOT</version>
-    </parent>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.pia.commons</groupId>
+    <artifactId>tmf-v4-clients</artifactId>
+    <version>1.1.1-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>tmf-641-v4-client</artifactId>
+  <artifactId>tmf-641-v4-client</artifactId>
 
-    <properties>
-        <tmf-641-v4-model.version>4.1.0.3</tmf-641-v4-model.version>
-        <dnext-tmf-641-v4-model.version>4.1.0.5</dnext-tmf-641-v4-model.version>
-    </properties>
+  <properties>
+    <tmf-641-v4-model.version>4.1.0.3</tmf-641-v4-model.version>
+  </properties>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>com.pia.commons</groupId>
-            <artifactId>tmf-641-v4-model</artifactId>
-            <version>${tmf-641-v4-model.version}</version>
-        </dependency>
-
-        <!-- Test Dependencies -->
-        <dependency>
-            <groupId>com.pia.commons</groupId>
-            <artifactId>dnext-tmf-641-v4-model</artifactId>
-            <version>${dnext-tmf-641-v4-model.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>tmf-hub-v4-client</artifactId>
-            <version>${project.version}</version>
-            <classifier>tests</classifier>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-
-    </dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>com.pia.commons</groupId>
+      <artifactId>tmf-641-v4-model</artifactId>
+      <version>${tmf-641-v4-model.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>

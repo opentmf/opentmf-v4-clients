@@ -260,3 +260,6 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 - Updates pia-web-clients to 1.0.9
 - Updates tmf-clients-base to 1.0.5
 - Updates Spring Boot to 3.4.3
+### 1.1.1 (Backward Incompatible)
+- Updates tmf-clients-base to 1.1.0
+- Updates Spring Boot to 3.4.4

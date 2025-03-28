@@ -14,13 +14,11 @@
   </properties>
 
   <dependencies>
-
     <dependency>
       <groupId>com.pia.commons</groupId>
       <artifactId>tmf-629-v4-model</artifactId>
       <version>${tmf-629-v4-model.version}</version>
     </dependency>
-
   </dependencies>
 
 </project>

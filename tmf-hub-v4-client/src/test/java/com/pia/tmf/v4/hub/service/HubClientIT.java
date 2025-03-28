@@ -1,5 +1,6 @@
 package com.pia.tmf.v4.hub.service;
 
+import static org.apache.commons.lang3.RandomStringUtils.insecure;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,8 +13,8 @@ import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.ReplaceOperation;
 import com.pia.tmf.common.config.TmfClientConfigurations;
 import com.pia.tmf.common.config.TmfClientConfigurations.TmfClientConfig;
-import com.pia.tmf.common.model.RetrievalContext;
 import com.pia.tmf.common.model.TmfOffsetRequest;
+import com.pia.tmf.common.model.TmfRequestContext;
 import com.pia.tmf.v4.common.model.EventSubscription;
 import com.pia.tmf.v4.hub.client.api.HubClient;
 import com.pia.tmf.v4.hub.config.HubClientProvider;
@@ -22,7 +23,6 @@ import com.pia.tmf.v4.hub.helper.MockServerUtils;
 import com.pia.tmf.v4.hub.model.ExtendedEventSubscription;
 import java.net.URI;
 import java.util.List;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.LinkedMultiValueMap;
 import reactor.test.StepVerifier;
 
 /**
@@ -166,7 +165,7 @@ class HubClientIT {
   void test_tmfGetWithFilter_throwUnsupportedException() {
     assertThrows(
         UnsupportedOperationException.class,
-        () -> hubClient.get("id", RetrievalContext.builder().withFields("fields").build()));
+        () -> hubClient.get("id", TmfRequestContext.builder().withFields("fields").build()));
   }
 
   @Test
@@ -180,7 +179,7 @@ class HubClientIT {
         UnsupportedOperationException.class,
         () ->
             hubClient.get(
-                "id", RetrievalContext.builder().withFields("fields").build(), Object.class));
+                "id", TmfRequestContext.builder().withFields("fields").build(), Object.class));
   }
 
   @Test
@@ -194,7 +193,7 @@ class HubClientIT {
         UnsupportedOperationException.class,
         () ->
             hubClient.getWithToken(
-                "token", "id", RetrievalContext.builder().withFields("fields").build()));
+                "token", "id", TmfRequestContext.builder().withFields("fields").build()));
   }
 
   @Test
@@ -212,7 +211,7 @@ class HubClientIT {
             hubClient.getWithToken(
                 "token",
                 "id",
-                RetrievalContext.builder().withFields("fields").build(),
+                TmfRequestContext.builder().withFields("fields").build(),
                 Object.class));
   }
 
@@ -228,19 +227,6 @@ class HubClientIT {
   }
 
   @Test
-  void test_tmfListWithClassType_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class, () -> hubClient.list(new LinkedMultiValueMap<>()));
-  }
-
-  @Test
-  void test_tmfListWithClassTypeAndFilter_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () -> hubClient.list(new LinkedMultiValueMap<>(), TmfOffsetRequest.of()));
-  }
-
-  @Test
   void test_tmfListWithToken_throwUnsupportedException() {
     assertThrows(UnsupportedOperationException.class, () -> hubClient.listWithToken("token"));
   }
@@ -253,20 +239,6 @@ class HubClientIT {
   }
 
   @Test
-  void test_tmfListWithTokenWithClassType_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () -> hubClient.listWithToken("token", new LinkedMultiValueMap<>()));
-  }
-
-  @Test
-  void test_tmfListWithTokenWithClassTypeAndFilter_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () -> hubClient.listWithToken("token", new LinkedMultiValueMap<>(), TmfOffsetRequest.of()));
-  }
-
-  @Test
   void test_tmfListAll_throwUnsupportedException() {
     assertThrows(UnsupportedOperationException.class, () -> hubClient.listAll());
   }
@@ -275,19 +247,6 @@ class HubClientIT {
   void test_tmfListAllWithFilter_throwUnsupportedException() {
     assertThrows(
         UnsupportedOperationException.class, () -> hubClient.listAll(TmfOffsetRequest.of(0, 10)));
-  }
-
-  @Test
-  void test_tmfListAllWithClassType_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class, () -> hubClient.listAll(new LinkedMultiValueMap<>()));
-  }
-
-  @Test
-  void test_tmfListAllWithClassTypeAndFilter_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () -> hubClient.listAll(new LinkedMultiValueMap<>(), TmfOffsetRequest.of()));
   }
 
   @Test
@@ -303,22 +262,6 @@ class HubClientIT {
   }
 
   @Test
-  void test_tmfListAllWithTokenWithClassType_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () -> hubClient.listAllWithToken("token", new LinkedMultiValueMap<>()));
-  }
-
-  @Test
-  void test_tmfListAllWithTokenWithClassTypeAndFilter_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () ->
-            hubClient.listAllWithToken(
-                "token", new LinkedMultiValueMap<>(), TmfOffsetRequest.of()));
-  }
-
-  @Test
   void test_tmfListPaged_throwUnsupportedException() {
     assertThrows(UnsupportedOperationException.class, () -> hubClient.listPaged());
   }
@@ -327,20 +270,6 @@ class HubClientIT {
   void test_tmfListPagedWithFilter_throwUnsupportedException() {
     assertThrows(
         UnsupportedOperationException.class, () -> hubClient.listPaged(TmfOffsetRequest.of(0, 10)));
-  }
-
-  @Test
-  void test_tmfListPagedWithClassType_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () -> hubClient.listPaged(new LinkedMultiValueMap<>()));
-  }
-
-  @Test
-  void test_tmfListPagedWithClassTypeAndFilter_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () -> hubClient.listPaged(new LinkedMultiValueMap<>(), TmfOffsetRequest.of()));
   }
 
   @Test
@@ -356,22 +285,6 @@ class HubClientIT {
   }
 
   @Test
-  void test_tmfListPagedWithTokenWithClassType_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () -> hubClient.listPagedWithToken("token", new LinkedMultiValueMap<>()));
-  }
-
-  @Test
-  void test_tmfListPagedWithTokenWithClassTypeAndFilter_throwUnsupportedException() {
-    assertThrows(
-        UnsupportedOperationException.class,
-        () ->
-            hubClient.listPagedWithToken(
-                "token", new LinkedMultiValueMap<>(), TmfOffsetRequest.of()));
-  }
-
-  @Test
   void test_tmfPatch_throwUnsupportedException() {
     assertThrows(
         UnsupportedOperationException.class,
@@ -384,7 +297,7 @@ class HubClientIT {
         UnsupportedOperationException.class,
         () ->
             hubClient.patch(
-                "id", new ExtendedEventSubscription(), RetrievalContext.builder().build()));
+                "id", new ExtendedEventSubscription(), TmfRequestContext.builder().build()));
   }
 
   @Test
@@ -403,7 +316,7 @@ class HubClientIT {
                 "token",
                 "id",
                 new ExtendedEventSubscription(),
-                RetrievalContext.builder().build()));
+                TmfRequestContext.builder().build()));
   }
 
   @Test
@@ -421,7 +334,7 @@ class HubClientIT {
             hubClient.patch(
                 "id",
                 new ExtendedEventSubscription(),
-                RetrievalContext.builder().build(),
+                TmfRequestContext.builder().build(),
                 Object.class));
   }
 
@@ -442,7 +355,7 @@ class HubClientIT {
                 "token",
                 "id",
                 new ExtendedEventSubscription(),
-                RetrievalContext.builder().build(),
+                TmfRequestContext.builder().build(),
                 Object.class));
   }
 
@@ -462,7 +375,7 @@ class HubClientIT {
             List.of(new ReplaceOperation(new JsonPointer("/name"), new TextNode("test_patch"))));
     assertThrows(
         UnsupportedOperationException.class,
-        () -> hubClient.patch("id", patch, RetrievalContext.builder().build()));
+        () -> hubClient.patch("id", patch, TmfRequestContext.builder().build()));
   }
 
   @Test
@@ -484,7 +397,7 @@ class HubClientIT {
 
     assertThrows(
         UnsupportedOperationException.class,
-        () -> hubClient.patchWithToken("token", "id", patch, RetrievalContext.builder().build()));
+        () -> hubClient.patchWithToken("token", "id", patch, TmfRequestContext.builder().build()));
   }
 
   @Test
@@ -504,7 +417,7 @@ class HubClientIT {
             List.of(new ReplaceOperation(new JsonPointer("/name"), new TextNode("test_patch"))));
     assertThrows(
         UnsupportedOperationException.class,
-        () -> hubClient.patch("id", patch, RetrievalContext.builder().build(), Object.class));
+        () -> hubClient.patch("id", patch, TmfRequestContext.builder().build(), Object.class));
   }
 
   @Test
@@ -528,7 +441,7 @@ class HubClientIT {
         UnsupportedOperationException.class,
         () ->
             hubClient.patchWithToken(
-                "token", "id", patch, RetrievalContext.builder().build(), Object.class));
+                "token", "id", patch, TmfRequestContext.builder().build(), Object.class));
   }
 
   private URI getCallbackUri() {
@@ -539,7 +452,7 @@ class HubClientIT {
     var extendedSub = new ExtendedEventSubscription();
     extendedSub.setCallback(getCallbackUri());
     extendedSub.setQuery("eventType=serviceCatalogStateChangeEvent");
-    extendedSub.setId(RandomStringUtils.randomAlphabetic(10));
+    extendedSub.setId(insecure().nextAlphabetic(10));
     TmfClientConfig config = tmfClientConfigurations.getTmfClients().get("sh-hub-client");
     extendedSub.setHubUri(
         URI.create(
@@ -553,7 +466,7 @@ class HubClientIT {
     var eventSubscription = new EventSubscription();
     eventSubscription.setCallback(getCallbackUri());
     eventSubscription.setQuery("eventType=serviceCatalogStateChangeEvent");
-    eventSubscription.setId(RandomStringUtils.randomAlphabetic(10));
+    eventSubscription.setId(insecure().nextAlphabetic(10));
     return eventSubscription;
   }
 }

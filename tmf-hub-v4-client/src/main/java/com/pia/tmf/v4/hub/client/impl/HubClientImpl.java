@@ -6,9 +6,9 @@ import com.pia.client.common.service.api.TokenService;
 import com.pia.tmf.common.client.impl.TmfClientBaseImpl;
 import com.pia.tmf.common.config.TmfClientConfigurations.TmfClientConfig;
 import com.pia.tmf.common.exception.TmfClientException;
-import com.pia.tmf.common.model.RetrievalContext;
 import com.pia.tmf.common.model.Scope;
 import com.pia.tmf.common.model.TmfPage;
+import com.pia.tmf.common.model.TmfRequestContext;
 import com.pia.tmf.common.util.TmfClientCommonHeaderUtil;
 import com.pia.tmf.common.util.TmfClientCommonUtil;
 import com.pia.tmf.v4.common.model.EventSubscriptionInput;
@@ -20,7 +20,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Flux;
@@ -50,6 +49,7 @@ public final class HubClientImpl
   protected Class<? extends TmfClientException> getExceptionType() {
     return HubClientException.class;
   }
+
 
   @Override
   public Mono<ExtendedEventSubscription> registerListener(EventSubscriptionInput input) {
@@ -101,7 +101,7 @@ public final class HubClientImpl
   }
 
   @Override
-  public Mono<ExtendedEventSubscription> get(String id, RetrievalContext retrievalContext) {
+  public Mono<ExtendedEventSubscription> get(String id, TmfRequestContext requestContext) {
     throw new UnsupportedOperationException();
   }
 
@@ -111,7 +111,7 @@ public final class HubClientImpl
   }
 
   @Override
-  public <T> Mono<T> get(String id, RetrievalContext retrievalContext, Class<T> type) {
+  public <T> Mono<T> get(String id, TmfRequestContext requestContext, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
@@ -121,19 +121,19 @@ public final class HubClientImpl
   }
 
   @Override
+  public Mono<ExtendedEventSubscription> getWithToken(String token, String id,
+      TmfRequestContext requestContext) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public <T> Mono<T> getWithToken(String token, String id, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Mono<ExtendedEventSubscription> getWithToken(
-      String token, String id, RetrievalContext retrievalContext) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public <T> Mono<T> getWithToken(
-      String token, String id, RetrievalContext retrievalContext, Class<T> type) {
+  public <T> Mono<T> getWithToken(String token, String id, TmfRequestContext requestContext,
+      Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
@@ -143,18 +143,17 @@ public final class HubClientImpl
   }
 
   @Override
+  public <T> Flux<T> list(Class<T> type) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public Flux<ExtendedEventSubscription> list(Pageable pageable) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Flux<ExtendedEventSubscription> list(MultiValueMap<String, String> param) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public Flux<ExtendedEventSubscription> list(
-      MultiValueMap<String, String> param, Pageable pageable) {
+  public <T> Flux<T> list(Pageable request, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
@@ -164,19 +163,17 @@ public final class HubClientImpl
   }
 
   @Override
+  public <T> Flux<T> listWithToken(String token, Class<T> type) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public Flux<ExtendedEventSubscription> listWithToken(String token, Pageable pageable) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Flux<ExtendedEventSubscription> listWithToken(
-      String token, MultiValueMap<String, String> param) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public Flux<ExtendedEventSubscription> listWithToken(
-      String token, MultiValueMap<String, String> param, Pageable pageable) {
+  public <T> Flux<T> listWithToken(String token, Pageable request, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
@@ -186,18 +183,17 @@ public final class HubClientImpl
   }
 
   @Override
+  public <T> Flux<T> listAll(Class<T> type) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public Flux<ExtendedEventSubscription> listAll(Pageable pageable) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Flux<ExtendedEventSubscription> listAll(MultiValueMap<String, String> param) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public Flux<ExtendedEventSubscription> listAll(
-      MultiValueMap<String, String> param, Pageable pageable) {
+  public <T> Flux<T> listAll(Pageable pageable, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
@@ -207,19 +203,17 @@ public final class HubClientImpl
   }
 
   @Override
+  public <T> Flux<T> listAllWithToken(String token, Class<T> type) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public Flux<ExtendedEventSubscription> listAllWithToken(String token, Pageable pageable) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Flux<ExtendedEventSubscription> listAllWithToken(
-      String token, MultiValueMap<String, String> param) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public Flux<ExtendedEventSubscription> listAllWithToken(
-      String token, MultiValueMap<String, String> param, Pageable pageable) {
+  public <T> Flux<T> listAllWithToken(String token, Pageable pageable, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
@@ -229,19 +223,17 @@ public final class HubClientImpl
   }
 
   @Override
+  public <T> Mono<TmfPage<Flux<T>>> listPaged(Class<T> type) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public Mono<TmfPage<Flux<ExtendedEventSubscription>>> listPaged(Pageable pageable) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Mono<TmfPage<Flux<ExtendedEventSubscription>>> listPaged(
-      MultiValueMap<String, String> param) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public Mono<TmfPage<Flux<ExtendedEventSubscription>>> listPaged(
-      MultiValueMap<String, String> param, Pageable pageable) {
+  public <T> Mono<TmfPage<Flux<T>>> listPaged(Pageable pageable, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
@@ -251,119 +243,110 @@ public final class HubClientImpl
   }
 
   @Override
-  public Mono<TmfPage<Flux<ExtendedEventSubscription>>> listPagedWithToken(
-      String token, Pageable pageable) {
+  public <T> Mono<TmfPage<Flux<T>>> listPagedWithToken(String token, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Mono<TmfPage<Flux<ExtendedEventSubscription>>> listPagedWithToken(
-      String token, MultiValueMap<String, String> param) {
+  public Mono<TmfPage<Flux<ExtendedEventSubscription>>> listPagedWithToken(String token,
+      Pageable pageable) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Mono<TmfPage<Flux<ExtendedEventSubscription>>> listPagedWithToken(
-      String token, MultiValueMap<String, String> param, Pageable pageable) {
+  public <T> Mono<TmfPage<Flux<T>>> listPagedWithToken(String token, Pageable pageable,
+      Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
   @Override
   public Mono<ExtendedEventSubscription> patch(String id, EventSubscriptionInput obj) {
-    return patch(id, obj, getType());
-  }
-
-  @Override
-  public Mono<ExtendedEventSubscription> patch(
-      String id, EventSubscriptionInput obj, RetrievalContext retrievalContext) {
-    return patch(id, obj, retrievalContext, getType());
-  }
-
-  @Override
-  public <T> Mono<T> patch(String id, EventSubscriptionInput obj, Class<T> type) {
-    return patch(id, obj, null, type);
-  }
-
-  @Override
-  public <T> Mono<T> patch(
-      String id, EventSubscriptionInput obj, RetrievalContext retrievalContext, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Mono<ExtendedEventSubscription> patchWithToken(
-      String token, String id, EventSubscriptionInput obj) {
-    return patchWithToken(token, id, obj, getType());
+  public Mono<ExtendedEventSubscription> patch(String id, EventSubscriptionInput obj,
+      TmfRequestContext requestContext) {
+    throw new UnsupportedOperationException();
   }
 
   @Override
-  public Mono<ExtendedEventSubscription> patchWithToken(
-      String token, String id, EventSubscriptionInput obj, RetrievalContext retrievalContext) {
-    return patchWithToken(token, id, obj, retrievalContext, getType());
+  public <T> Mono<T> patch(String id, EventSubscriptionInput obj, Class<T> type) {
+    throw new UnsupportedOperationException();
   }
 
   @Override
-  public <T> Mono<T> patchWithToken(
-      String token, String id, EventSubscriptionInput obj, Class<T> type) {
-    return patchWithToken(token, id, obj, null, type);
-  }
-
-  @Override
-  public <T> Mono<T> patchWithToken(
-      String token,
-      String id,
-      EventSubscriptionInput obj,
-      RetrievalContext retrievalContext,
+  public <T> Mono<T> patch(String id, EventSubscriptionInput obj, TmfRequestContext requestContext,
       Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
   @Override
   public Mono<ExtendedEventSubscription> patch(String id, JsonPatch jsonPatch) {
-    return patch(id, jsonPatch, getType());
-  }
-
-  @Override
-  public Mono<ExtendedEventSubscription> patch(
-      String id, JsonPatch jsonPatch, RetrievalContext retrievalContext) {
-    return patch(id, jsonPatch, retrievalContext, getType());
-  }
-
-  @Override
-  public <T> Mono<T> patch(String id, JsonPatch jsonPatch, Class<T> type) {
-    return patch(id, jsonPatch, null, type);
-  }
-
-  @Override
-  public <T> Mono<T> patch(
-      String id, JsonPatch jsonPatch, RetrievalContext retrievalContext, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public Mono<ExtendedEventSubscription> patchWithToken(
-      String token, String id, JsonPatch jsonPatch) {
-    return patchWithToken(token, id, jsonPatch, getType());
+  public Mono<ExtendedEventSubscription> patch(String id, JsonPatch jsonPatch,
+      TmfRequestContext requestContext) {
+    throw new UnsupportedOperationException();
   }
 
   @Override
-  public Mono<ExtendedEventSubscription> patchWithToken(
-      String token, String id, JsonPatch jsonPatch, RetrievalContext retrievalContext) {
-    return patchWithToken(token, id, jsonPatch, retrievalContext, getType());
+  public <T> Mono<T> patch(String id, JsonPatch jsonPatch, Class<T> type) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public <T> Mono<T> patch(String id, JsonPatch jsonPatch, TmfRequestContext requestContext,
+      Class<T> type) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Mono<ExtendedEventSubscription> patchWithToken(String token, String id,
+      EventSubscriptionInput obj) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Mono<ExtendedEventSubscription> patchWithToken(String token, String id,
+      EventSubscriptionInput obj, TmfRequestContext requestContext) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public <T> Mono<T> patchWithToken(String token, String id, EventSubscriptionInput obj,
+      Class<T> type) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public <T> Mono<T> patchWithToken(String token, String id, EventSubscriptionInput obj,
+      TmfRequestContext requestContext, Class<T> type) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Mono<ExtendedEventSubscription> patchWithToken(String token, String id,
+      JsonPatch jsonPatch) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Mono<ExtendedEventSubscription> patchWithToken(String token, String id,
+      JsonPatch jsonPatch, TmfRequestContext requestContext) {
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public <T> Mono<T> patchWithToken(String token, String id, JsonPatch jsonPatch, Class<T> type) {
-    return patchWithToken(token, id, jsonPatch, null, type);
+    throw new UnsupportedOperationException();
   }
 
   @Override
-  public <T> Mono<T> patchWithToken(
-      String token,
-      String id,
-      JsonPatch jsonPatch,
-      RetrievalContext retrievalContext,
-      Class<T> type) {
+  public <T> Mono<T> patchWithToken(String token, String id, JsonPatch jsonPatch,
+      TmfRequestContext requestContext, Class<T> type) {
     throw new UnsupportedOperationException();
   }
 }

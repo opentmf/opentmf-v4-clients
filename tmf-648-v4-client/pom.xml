@@ -14,7 +14,6 @@
   </properties>
 
   <dependencies>
-
     <dependency>
       <groupId>com.pia.commons</groupId>
       <artifactId>tmf-648-v4-model</artifactId>

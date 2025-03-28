@@ -41,19 +41,19 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<spring-boot.version>3.4.3</spring-boot.version>
+		<spring-boot.version>3.4.4</spring-boot.version>
 		<java.version>17</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 
 		<pia-webclients.version>1.0.9</pia-webclients.version>
-		<tmf-clients-base.version>1.0.5</tmf-clients-base.version>
+		<tmf-clients-base.version>1.1.0</tmf-clients-base.version>
 		<json-path.version>2.9.0</json-path.version>
 		<json-patch.version>1.13</json-patch.version>
 		<mockserver.version>5.15.0</mockserver.version>
 		<jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
-		<sonar-plugin.version>5.0.0.4389</sonar-plugin.version>
+		<sonar-plugin.version>5.1.0.4751</sonar-plugin.version>
 		<nexus-staging-plugin.version>1.7.0</nexus-staging-plugin.version>
 		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
 		<maven-failsafe-plugin.version>3.5.2</maven-failsafe-plugin.version>
