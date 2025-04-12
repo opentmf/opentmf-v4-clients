@@ -1,0 +1,18 @@
+package org.opentmf.v4.tmf639.config;
+
+import org.opentmf.client.common.service.api.TokenService;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+
+/**
+ * @author Gokhan Demir
+ */
+@AutoConfiguration(after = TokenService.class)
+public class Tmf639ClientAutoConfiguration {
+
+  @Bean
+  public ResourceClientProvider resourceInventoryClientProvider(ApplicationContext ctx) {
+    return new ResourceClientProvider(ctx);
+  }
+}

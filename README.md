@@ -3,7 +3,7 @@ TMF-630 compliant client providers for TMF v4 backends.
 
 This library is intended to provide clients for TMF v4 models.
 
-For the provided TmfClient methods and behaviour, please see [tmf-clients-base](https://github.com/pia-commons/tmf-clients-base) project and its [README.md](https://github.com/pia-commons/tmf-clients-base/blob/develop/README.md) file. 
+For the provided TmfClient methods and behaviour, please see [opentmf-clients-base](https://github.com/opentmf/opentmf-clients-base) project and its [README.md](https://github.com/opentmf/opentmf-clients-base/blob/develop/README.md) file. 
 
 ## Exposed Client Providers
 
@@ -60,31 +60,31 @@ Let's imagine a scenario, where a microservice needs to communicate with three d
 
   <dependencyManagement>
     <dependency>
-      <groupId>com.pia.commons</groupId>
-      <artifactId>pia-commons-versions</artifactId>
+      <groupId>org.opentmf</groupId>
+      <artifactId>opentmf-versions</artifactId>
       <version>RELEASE</version>
       <type>pom</type>
       <scope>import</scope>
     </dependency>
   </dependencyManagement>
 
-  <!-- This automatically picks up tmf-622-model -->
+  <!-- This automatically picks up opentmf-622-v4-model -->
   <dependency>
-    <groupId>com.pia.commons</groupId>
-    <artifactId>tmf-622-v4-client</artifactId>
+    <groupId>org.opentmf.client</groupId>
+    <artifactId>opentmf-622-v4-client</artifactId>
   </dependency>
 
   <!-- Also be able to use DNext extensions to the ProductOrderManagement -->
   <dependency>
-    <groupId>com.pia.commons</groupId>
-    <artifactId>dnext-tmf-622-v4-model</artifactId>
+    <groupId>org.opentmf.model</groupId>
+    <artifactId>dnext-opentmf-622-v4-model</artifactId>
   </dependency>
   
-  <!-- Note: Using at least one PiA web client is mandatory. -->
+  <!-- Note: Using at least one OpenTMF web client is mandatory. -->
   <!-- We will use an openid web client in this example -->
   <dependency>
-    <groupId>com.pia.commons</groupId>
-    <artifactId>pia-openid-webclients-starter</artifactId>
+    <groupId>org.opentmf.client</groupId>
+    <artifactId>opentmf-openid-webclients-starter</artifactId>
   </dependency>
 
 </project>
@@ -93,7 +93,7 @@ Let's imagine a scenario, where a microservice needs to communicate with three d
 
 #### application.yaml
 ```yaml
-pia:
+opentmf:
   webclient:
     openid:
       dnext:
@@ -165,21 +165,21 @@ pia:
         patch: OTHER_PATCH_PRODUCT_ORDER
         delete: OTHER_DELETE_PRODUCT_ORDER_BY_ID
 ```
-For more detailed configuration options, please consult the documentation on the pia-web-clients library README document.
+For more detailed configuration options, please consult the documentation on the opentmf-web-clients library README document.
 
 ### WebClient, TokenService and ClientProperties Bean Configurations
-The PiA TMF v4 Clients Library requires 3 beans to be exposed prefixed by the connection id for each configured web client. 
+The OpenTMF v4 Clients Library requires 3 beans to be exposed prefixed by the connection id for each configured web client. 
 
-For example, for a configured web client named dnext, the following three beans must be exposed:
+For example, for a configured web client named dnext, the following three beans must have been exposed:
 
 - `dnextWebClient`
 - `dnextTokenService`
 - `dnextClientConfiguration`
 
-Thanks to the `pia-openid-webclients-starter` autoconfiguration library, these beans are already exposed automatically.
+Thanks to the `opentmf-openid-webclients-starter` autoconfiguration library, these beans are already exposed automatically.
 
-### Expose TmfClient Beans
-TMF Client library provides a ClientProvider bean per endpoint to construct the implementation dynamically using the preferred web client.
+### Expose `TmfClient` Beans
+TMF Client library provides a `TmfClientProvider` bean per endpoint to construct the implementation dynamically using the preferred web client.
 
 In our microservice, we need to expose a customized ObjectMapper and the requested TMF client implementations as beans in a configuration class similar to the following:
 
@@ -263,3 +263,5 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 ### 1.1.1 (Backward Incompatible)
 - Updates tmf-clients-base to 1.1.0
 - Updates Spring Boot to 3.4.4
+### 1.1.2
+- Initial open-source version, replacing pia with opentmf
