@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.opentmf.client</groupId>
-		<artifactId>opentmf-v4-clients</artifactId>
-		<version>1.1.3-SNAPSHOT</version>
-	</parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opentmf.client</groupId>
+    <artifactId>opentmf-v4-clients</artifactId>
+    <version>1.1.3-SNAPSHOT</version>
+  </parent>
 
-	<artifactId>opentmf-638-v4-client</artifactId>
+  <artifactId>opentmf-638-v4-client</artifactId>
+  <name>opentmf-638-v4-client</name>
 
-	<description>
-		OpenTmf 638 V4 Client (Service Inventory)
-	</description>
+  <description>
+    OpenTmf 638 V4 Client (Service Inventory)
+  </description>
 
-	<properties>
-		<opentmf-638-v4-model.version>4.0.0.5</opentmf-638-v4-model.version>
-	</properties>
+  <properties>
+    <opentmf-638-v4-model.version>4.0.0.5</opentmf-638-v4-model.version>
+  </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.opentmf.model</groupId>
-			<artifactId>opentmf-638-v4-model</artifactId>
-			<version>${opentmf-638-v4-model.version}</version>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-638-v4-model</artifactId>
+      <version>${opentmf-638-v4-model.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>

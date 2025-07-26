@@ -265,3 +265,5 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 - Updates Spring Boot to 3.4.4
 ### 1.1.2
 - Initial open-source version, replacing pia with opentmf
+### 1.1.3
+- Updates opentmf-clients-base to 1.1.3
