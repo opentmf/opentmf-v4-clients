@@ -267,3 +267,5 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 - Initial open-source version, replacing pia with opentmf
 ### 1.1.3
 - Updates opentmf-clients-base to 1.1.3
+### 1.1.4
+- Updates opentmf-clients-base to 1.1.4
