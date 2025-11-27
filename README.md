@@ -3,7 +3,7 @@ TMF-630 compliant client providers for TMF v4 backends.
 
 This library is intended to provide clients for TMF v4 models.
 
-For the provided TmfClient methods and behaviour, please see [opentmf-clients-base](https://github.com/opentmf/opentmf-clients-base) project and its [README.md](https://github.com/opentmf/opentmf-clients-base/blob/develop/README.md) file. 
+For the provided TmfClient methods and behaviour, please see [opentmf-clients-base](https://github.com/opentmf/opentmf-clients-base) project and its [README.md](https://github.com/opentmf/opentmf-clients-base/blob/develop/README.md) file.
 
 ## Exposed Client Providers
 
@@ -79,7 +79,7 @@ Let's imagine a scenario, where a microservice needs to communicate with three d
     <groupId>org.opentmf.model</groupId>
     <artifactId>dnext-opentmf-622-v4-model</artifactId>
   </dependency>
-  
+
   <!-- Note: Using at least one OpenTMF web client is mandatory. -->
   <!-- We will use an openid web client in this example -->
   <dependency>
@@ -168,7 +168,7 @@ opentmf:
 For more detailed configuration options, please consult the documentation on the opentmf-web-clients library README document.
 
 ### WebClient, TokenService and ClientProperties Bean Configurations
-The OpenTMF v4 Clients Library requires 3 beans to be exposed prefixed by the connection id for each configured web client. 
+The OpenTMF v4 Clients Library requires 3 beans to be exposed prefixed by the connection id for each configured web client.
 
 For example, for a configured web client named dnext, the following three beans must have been exposed:
 
@@ -218,10 +218,10 @@ Then in our service implementation, we can use any ProductOrderClient bean that 
 @Service
 @RequiredArgsConstructor
 public class SomeServiceImpl implements SomeService {
-  
+
   private final ProductOrderClient dnextProductOrderClient;
   private final ProductOrderClient otherProductOrderClient;
-  
+
   // ...
 }
 ```
@@ -248,7 +248,7 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 - simplifies client implementations by introducing @Getter
 ### 1.0.6
 - updates pia-tmf-v4-models to v3.
-- adds TMF-681 CommunicationsMessageClient 
+- adds TMF-681 CommunicationsMessageClient
 ### 1.0.7
 -  updates pia-web-clients to 1.0.7
 ### 1.0.8
@@ -269,3 +269,6 @@ Voila! Simple! And we have a dozen of methods to communicate with any TMF backen
 - Updates opentmf-clients-base to 1.1.3
 ### 1.1.4
 - Updates opentmf-clients-base to 1.1.4
+### 1.1.5
+- Updates opentmf-clients-base to 1.1.5
+- Updates Spring Boot base to 3.5.8
