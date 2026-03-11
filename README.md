@@ -227,48 +227,4 @@ public class SomeServiceImpl implements SomeService {
 ```
 Voila! Simple! And we have a dozen of methods to communicate with any TMF backend with a TMF-630 compliant fashion.
 
-## Version History
-### 1.0.0
-- Initial release
-### 1.0.1
-- Adds GenericClient
-### 1.0.2
-- renames modules by appending v4
-- starts using the separate tmf-clients-base project
-- simplifies test dependencies
-### 1.0.3
-- updates tmf-clients-base to 1.0.1
-- updates pia-web-clients to 1.0.4
-### 1.0.4
-- updates tmf-clients-base to 1.0.2
-- updates pia-web-clients to 1.0.5
-### 1.0.5
-- updates tmf-clients-base to 1.0.3
-- updates pia-web-clients to 1.0.6
-- simplifies client implementations by introducing @Getter
-### 1.0.6
-- updates pia-tmf-v4-models to v3.
-- adds TMF-681 CommunicationsMessageClient
-### 1.0.7
--  updates pia-web-clients to 1.0.7
-### 1.0.8
--  fixes the bean name for quoteClientProvider
-### 1.0.9
-- Updates to pia-web-clients 1.0.8, for fewer dependencies for the reactive WebClient.
-- Updates Spring Boot to 3.4.1
-### 1.1.0
-- Updates pia-web-clients to 1.0.9
-- Updates tmf-clients-base to 1.0.5
-- Updates Spring Boot to 3.4.3
-### 1.1.1 (Backward Incompatible)
-- Updates tmf-clients-base to 1.1.0
-- Updates Spring Boot to 3.4.4
-### 1.1.2
-- Initial open-source version, replacing pia with opentmf
-### 1.1.3
-- Updates opentmf-clients-base to 1.1.3
-### 1.1.4
-- Updates opentmf-clients-base to 1.1.4
-### 1.1.5
-- Updates opentmf-clients-base to 1.1.5
-- Updates Spring Boot base to 3.5.8
+For version history, please see the [`CHANGELOG.md`](CHANGELOG.md) file.
