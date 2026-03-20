@@ -85,7 +85,7 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
 
     <opentmf-webclients.version>1.1.1</opentmf-webclients.version>
-    <opentmf-clients-base.version>1.1.7</opentmf-clients-base.version>
+    <opentmf-clients-base.version>1.1.8</opentmf-clients-base.version>
     <json-path.version>3.0.0</json-path.version>
     <json-patch.version>1.13</json-patch.version>
     <mockserver.version>5.15.0</mockserver.version>
