@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.opentmf.client</groupId>
     <artifactId>opentmf-v4-clients</artifactId>
-    <version>1.1.8-SNAPSHOT</version>
+    <version>1.1.8</version>
   </parent>
 
   <artifactId>opentmf-681-v4-client</artifactId>
